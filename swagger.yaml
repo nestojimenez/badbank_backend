@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: API BadBak
+  description: This API is to handle all database operations on the BadBank app.
+  version: 1.0.0
+  
+servers:
+- url: http://localhost:8000
+
+tags:
+- name: BadBak Transactions
+  description: This endpoint handles all information in regards the Users.
+  
+paths:
+  /all:
+    get:
+      tags:
+      - Basic operations
+      summary: Get all users.
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      description: The user ID
+                      default: 123456789
+                    name:
+                      type: string
+                      description: The user name
+                      default: Wilfrido
+                    email:
+                      type: string
+                      description: The user email
+                      default: wilfrido@gmail
+                    password:
+                      type: string
+                      description: The user password
+                      default: 123456
+                    balance:
+                        type: integer
+                        description: The user current balance
+                        default: 1000000
+
+  /account/create/{name}/{email}/{password}:
+    get:
+      tags:
+      - Basic operations
+      summary: Creates a new user.
+      parameters:
+      - name: name
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: path
+        description: User name
+        required: true 
+        schema:
+          type: string 
+      responses:
+        200:
+          description: OK
+          
+
+  /account/getByEmail/{email}:
+    get:
+      tags:
+      - Basic operations
+      summary: Creates a new user.
+      parameters:      
+      - name: email
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string      
+      responses: 
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    description: The user ID
+                    default: 123456789
+                  name:
+                    type: string
+                    description: The user name
+                    default: Wilfrido
+                  email:
+                    type: string
+                    description: The user email
+                    default: wilfrido@gmail
+                  password:
+                    type: string
+                    description: The user password
+                    default: 123456
+                  balance:
+                      type: integer
+                      description: The user current balance
+                      default: 1000000
+
+  /account/updateBalance/{email}/{balance}:
+    get:
+      tags:
+      - Basic operations
+      summary: Creates a new user.
+      parameters:      
+      - name: email
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string      
+      - name: balance
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string  
+      responses: 
+        200:
+          description: OK
+
+  /account/transaction/{name}/{email}/{amount}/{type}:
+    get:
+      tags:
+      - Transactions
+      summary: Creates a new transaction.
+      parameters:  
+      - name: name
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string        
+      - name: email
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string      
+      - name: amount
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: integer  
+      - name: type
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string
+      responses: 
+        200:
+          description: OK
+
+  /account/makeTransfer/{email}/{amount}:
+    get:
+      tags:
+      - Transactions
+      summary: Creates a new transaction.
+      parameters:  
+            
+      - name: email
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: string      
+      - name: amount
+        in: path
+        description: User name
+        required: true
+        schema:
+          type: integer  
+      
+      responses: 
+        200:
+          description: OK
+          
